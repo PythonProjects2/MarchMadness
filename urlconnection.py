@@ -26,11 +26,13 @@ def establish_connection(url):
     """
     Uses the requests library to establish a connection with the website, assuming that
     its robots.txt allows it.
+    This is done through isolating the base url, adding robots.txt onto it, then requesting the status code of that
+    site. If it's all clear, then we retrieve the content of the site and return it.
     :param url: The URL to be requested.
     :return: The website in raw html form.
     """
     my_header = {
-        'useragent': 'python-requests/4.8.2(Compatible;raragbot;mailto: raragbot@gmail.com)',
+        'useragent': 'python-requests/4.8.2(Compatible;raragbot;mailto: raragbot@gmail.com)'
     }
     baseurl = isolatebaseurl(url)  # Isolate the base url to retrieve the robots.txt.
     robotwebsite = requests.get(baseurl + '/robots.txt', headers=my_header)
